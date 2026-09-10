@@ -135,7 +135,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .io-btn:active{opacity:.8}
 
 /* Charts */
-.cw{position:relative;height:155px;margin:6px 0}
+.cw{position:relative;height:220px;margin:6px 0;overflow:hidden}
 canvas{width:100%!important}
 
 /* Summary */
@@ -166,6 +166,86 @@ canvas{width:100%!important}
 /* Toast */
 .toast{position:fixed;bottom:calc(80px + var(--safe));left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:9px 18px;border-radius:20px;font-size:12px;font-weight:500;z-index:999;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap}
 .toast.show{opacity:1}
+/* ── Account Statement ── */
+.stmt-controls{background:#fff;border-radius:var(--r);padding:12px;margin-bottom:10px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.stmt-filters{display:flex;gap:8px;margin-bottom:10px}
+.stmt-filters select{flex:1;padding:8px 10px;border:1.5px solid var(--bdr);border-radius:9px;font-size:12px;color:var(--text);background:var(--bg);outline:none;-webkit-appearance:none}
+.stmt-filters select:focus{border-color:var(--g)}
+.stmt-search input{width:100%;padding:9px 12px;border:1.5px solid var(--bdr);border-radius:9px;font-size:13px;color:var(--text);background:var(--bg);outline:none}
+.stmt-search input:focus{border-color:var(--g)}
+.stmt-summary-bar{display:flex;gap:0;margin-top:10px;border-radius:9px;overflow:hidden;border:1px solid var(--bdr)}
+.ssb-item{flex:1;padding:8px 4px;text-align:center;background:#fff}
+.ssb-item:not(:last-child){border-right:1px solid var(--bdr)}
+.ssb-label{font-size:9px;color:var(--sub);font-weight:600;text-transform:uppercase;letter-spacing:.3px}
+.ssb-val{font-size:13px;font-weight:700;margin-top:2px}
+.stmt-wrap{background:#fff;border-radius:var(--r);box-shadow:0 1px 4px rgba(0,0,0,.06);overflow:hidden}
+.stmt-header{display:grid;grid-template-columns:60px 1fr 80px 68px;background:var(--g);padding:9px 12px}
+.stmt-header span{font-size:10px;font-weight:700;color:rgba(255,255,255,.85);text-transform:uppercase;letter-spacing:.4px}
+.stmt-header span:nth-child(3),.stmt-header span:nth-child(4){text-align:right}
+.stmt-row{display:grid;grid-template-columns:60px 1fr 80px 68px;padding:10px 12px;border-bottom:1px solid var(--bdr);border-left:3px solid transparent;transition:background .15s}
+.stmt-row:last-child{border-bottom:none}
+.stmt-row.cr-row{border-left-color:var(--g)}
+.stmt-row.dr-row{border-left-color:var(--red)}
+.stmt-row.tr-row{border-left-color:var(--blue)}
+.stmt-date .day{font-size:15px;font-weight:700;color:var(--text);display:block;line-height:1}
+.stmt-date .mon{font-size:10px;color:var(--sub);margin-top:2px}
+.stmt-desc{padding:0 8px;min-width:0}
+.stmt-desc .name{font-size:12px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.stmt-desc .meta{font-size:10px;color:var(--sub);margin-top:2px;display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+.cat-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;display:inline-block}
+.stmt-amt{text-align:right;padding:0 4px}
+.stmt-amt .amount{font-size:13px;font-weight:700}
+.stmt-amt .amount.cr{color:var(--g)}
+.stmt-amt .amount.dr{color:var(--red)}
+.stmt-amt .amount.tr{color:var(--blue)}
+.stmt-amt .sdel{font-size:10px;background:var(--red-l);color:var(--red);border:none;border-radius:4px;padding:2px 5px;cursor:pointer;display:block;margin:3px 0 0 auto}
+.stmt-bal{text-align:right}
+.stmt-bal .rbal{font-size:11px;font-weight:700;color:var(--text)}
+.stmt-bal .rbal-l{font-size:9px;color:var(--sub);margin-top:1px}
+.month-sep{background:var(--bg);padding:6px 12px;border-bottom:1px solid var(--bdr);display:flex;justify-content:space-between;align-items:center}
+.month-sep .ml{font-size:10px;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:.5px}
+.month-sep .mn{font-size:11px;font-weight:700}
+.no-stmt{padding:44px 20px;text-align:center;color:var(--sub)}
+.no-stmt .ei{font-size:34px;margin-bottom:8px}
+.ob-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.ob-label{display:flex;align-items:center;gap:6px;width:110px;flex-shrink:0}
+.ob-icon{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px}
+.ob-name{font-size:12px;font-weight:600;color:var(--text)}
+.ob-input{flex:1;padding:8px 10px;border:1.5px solid var(--bdr);border-radius:9px;font-size:14px;color:var(--text);background:var(--bg);outline:none;text-align:right}
+.ob-input:focus{border-color:var(--g)}
+.ob-type{font-size:9px;color:var(--sub);margin-top:1px}
+/* Collapsible opening bal */
+.card-toggle{display:flex;justify-content:space-between;align-items:center;cursor:pointer;margin-bottom:0}
+.card-toggle .ct-arrow{font-size:12px;color:var(--sub);transition:transform .2s}
+.card-toggle.open .ct-arrow{transform:rotate(180deg)}
+.card-body{overflow:hidden;transition:max-height .3s;max-height:0}
+.card-body.open{max-height:600px}
+/* ── Insights ── */
+.period-btn{padding:6px 14px;border-radius:20px;border:1.5px solid var(--bdr);font-size:11px;font-weight:600;cursor:pointer;background:#fff;color:var(--sub)}
+.period-btn.active{background:var(--g);color:#fff;border-color:var(--g)}
+.cat-bar-row{margin-bottom:12px}
+.cat-bar-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.cat-bar-name{font-size:13px;font-weight:500;color:var(--text);display:flex;align-items:center;gap:6px}
+.cat-bar-amt{font-size:13px;font-weight:700;color:var(--text)}
+.cat-bar-pct{font-size:10px;color:var(--sub);margin-left:4px}
+.cat-bar-track{height:8px;background:var(--bdr);border-radius:4px;overflow:hidden}
+.cat-bar-fill{height:100%;border-radius:4px;transition:width .5s}
+.top-row{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--bdr)}
+.top-row:last-child{border-bottom:none}
+.top-rank{width:22px;height:22px;border-radius:50%;background:var(--g);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.top-info{flex:1;padding:0 10px}
+.top-name{font-size:13px;font-weight:500;color:var(--text)}
+.top-meta{font-size:10px;color:var(--sub);margin-top:1px}
+.top-amt{font-size:14px;font-weight:700;color:var(--red)}
+.bw-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--bdr)}
+.bw-row:last-child{border-bottom:none}
+.bw-left{display:flex;align-items:center;gap:8px}
+.bw-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px}
+.bw-name{font-size:12px;font-weight:700}
+.bw-type{font-size:10px;color:var(--sub)}
+.bw-right{text-align:right}
+.bw-bal{font-size:15px;font-weight:700}
+.bw-detail{font-size:10px;color:var(--sub);margin-top:2px}
 </style>
 </head>
 <body>
@@ -203,8 +283,8 @@ canvas{width:100%!important}
 <!-- Bottom Nav -->
 <div class="bnav">
   <div class="ni active" onclick="showPage('dashboard')"><span class="ic">📊</span>Overview</div>
-  <div class="ni" onclick="showPage('entries')"><span class="ic">📋</span>Entries</div>
-  <div class="ni" onclick="showPage('flow')"><span class="ic">🔄</span>Flow</div>
+  <div class="ni" onclick="showPage('entries')"><span class="ic">📋</span>Statement</div>
+  <div class="ni" onclick="showPage('insights')"><span class="ic">💡</span>Insights</div>
   <div class="ni" onclick="showPage('charts')"><span class="ic">📈</span>Charts</div>
   <div class="ni" onclick="showPage('backup')"><span class="ic">☁️</span>Backup</div>
 </div>
@@ -226,19 +306,81 @@ canvas{width:100%!important}
 
 <!-- ══ ENTRIES ══ -->
 <div class="page" id="page-entries">
-  <div id="entriesList"></div>
+  <!-- Statement Controls -->
+  <div class="stmt-controls">
+    <div class="stmt-filters">
+      <select id="filterType" onchange="renderAll()">
+        <option value="ALL">All Types</option>
+        <option value="credit">Credits Only</option>
+        <option value="debit">Debits Only</option>
+        <option value="transfer">Transfers Only</option>
+      </select>
+      <select id="filterCat" onchange="renderAll()">
+        <option value="ALL">All Categories</option>
+        <option value="Client Payment">Client Payment</option>
+        <option value="Loan Received">Loan Received</option>
+        <option value="Personal">Personal</option>
+        <option value="Tools">Tools</option>
+        <option value="LinkedIn">LinkedIn</option>
+        <option value="Outreach">Outreach</option>
+        <option value="Lab">Lab</option>
+        <option value="EMI">IIT KP EMI</option>
+        <option value="Savings">Savings</option>
+        <option value="Contingency">Contingency</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+    <div class="stmt-search">
+      <input type="text" id="searchInput" placeholder="🔍 Search description…" oninput="renderAll()">
+    </div>
+    <div class="stmt-summary-bar" id="stmtSummaryBar"></div>
+  </div>
+  <!-- Statement Table -->
+  <div class="stmt-wrap">
+    <div id="stmtTable"></div>
+  </div>
 </div>
 
-<!-- ══ FLOW ══ -->
-<div class="page" id="page-flow">
+<!-- ══ INSIGHTS ══ -->
+<div class="page" id="page-insights">
+
+  <!-- Balance Update Card -->
   <div class="card">
-    <div class="card-title">Transfers Between Accounts</div>
+    <div class="card-title">🏦 Update Bank Balances</div>
+    <p style="font-size:11px;color:var(--sub);margin-bottom:10px">Set your actual current balance for any account. Updates instantly across all views.</p>
+    <div id="balUpdateForm"></div>
+    <button class="sbtn" style="margin-top:10px" onclick="saveOpeningBals()">💾 Save All Balances</button>
+  </div>
+
+  <!-- Spending Breakdown -->
+  <div class="card">
+    <div class="card-title">💸 Where You Spend Most</div>
+    <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap" id="insightPeriodBtns">
+      <button class="period-btn active" onclick="setInsightPeriod('month',this)">This Month</button>
+      <button class="period-btn" onclick="setInsightPeriod('3month',this)">3 Months</button>
+      <button class="period-btn" onclick="setInsightPeriod('all',this)">All Time</button>
+    </div>
+    <div id="spendingBreakdown"></div>
+  </div>
+
+  <!-- Top Transactions -->
+  <div class="card">
+    <div class="card-title">🔝 Top 5 Expenses</div>
+    <div id="topExpenses"></div>
+  </div>
+
+  <!-- Bank-wise Income vs Expense -->
+  <div class="card">
+    <div class="card-title">🏦 Bank-wise Summary</div>
+    <div id="bankWiseSummary"></div>
+  </div>
+
+  <!-- Money Flow (transfers) -->
+  <div class="card">
+    <div class="card-title">🔄 Transfer History</div>
     <div id="flowList"></div>
   </div>
-  <div class="card">
-    <div class="card-title">Bank-wise Totals</div>
-    <div id="bankTotals"></div>
-  </div>
+
 </div>
 
 <!-- ══ CHARTS ══ -->
@@ -390,6 +532,8 @@ const S = {
   saveClientId(v){ localStorage.setItem('cm_gid',v); },
   sheetId(){ return localStorage.getItem('cm_sheet_id')||''; },
   saveSheetId(v){ localStorage.setItem('cm_sheet_id',v); },
+  openingBals(){ try{ return JSON.parse(localStorage.getItem('cm_opening_bals')||'{}'); }catch(e){ return {}; } },
+  saveOpeningBals(d){ localStorage.setItem('cm_opening_bals',JSON.stringify(d)); },
 };
 
 // ══ HELPERS ══
@@ -403,7 +547,8 @@ function toast(msg, dur=2500){
 }
 
 function bankBal(bank, entries){
-  return entries.reduce((s,e)=>{
+  const opening = S.openingBals()[bank] || 0;
+  const txnBal = entries.reduce((s,e)=>{
     if(e.type==='transfer'){
       if(e.bank===bank) return s-e.amount;
       if(e.toBank===bank) return s+e.amount;
@@ -412,6 +557,7 @@ function bankBal(bank, entries){
     if(e.bank!==bank) return s;
     return e.type==='credit'?s+e.amount:s-e.amount;
   },0);
+  return opening + txnBal;
 }
 
 // ══ BANK CHIP ══
@@ -427,9 +573,17 @@ function showPage(name){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-'+name).classList.add('active');
   document.querySelectorAll('.ni').forEach((n,i)=>{
-    n.classList.toggle('active',['dashboard','entries','flow','charts','backup'][i]===name);
+    n.classList.toggle('active',['dashboard','entries','insights','charts','backup'][i]===name);
   });
   renderAll();
+}
+
+let insightPeriod = 'month';
+function setInsightPeriod(p, el){
+  insightPeriod = p;
+  document.querySelectorAll('.period-btn').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  renderInsights(S.entries());
 }
 
 // ══ MODAL ══
@@ -475,6 +629,8 @@ function deleteEntry(id){
   if(!confirm('Delete this entry?')) return;
   S.saveEntries(S.entries().filter(e=>e.id!==id));
   toast('🗑️ Deleted');
+  // Full re-sync to Sheets so deletion is reflected
+  if(googleToken && sheetId) syncAllToSheets();
   renderAll();
 }
 
@@ -491,13 +647,14 @@ function renderAll(){
 
   renderDashboard(all,thisMonth);
   renderEntries(filtered);
-  renderFlow(all);
+  renderInsights(all);
   renderCharts(all);
   renderBackup();
 }
 
 // ══ DASHBOARD ══
 function renderDashboard(all,thisMonth){
+  // Opening balance form is now in Insights tab
   // Account grid
   document.getElementById('accGrid').innerHTML=Object.entries(BANKS).map(([k,b])=>{
     const bal=bankBal(k,all);
@@ -548,47 +705,269 @@ function renderDashboard(all,thisMonth){
     </div>`;
 }
 
+function saveOpeningBals(){
+  const obs = {};
+  Object.keys(BANKS).forEach(k=>{
+    const v = parseFloat(document.getElementById('ob_'+k)?.value||'0');
+    if(!isNaN(v)) obs[k] = v;
+  });
+  S.saveOpeningBals(obs);
+  toast('✓ Opening balances saved');
+  renderAll();
+}
+
 function updateLimit(){
   const v=parseFloat(document.getElementById('limitInput').value);
   if(!v||v<=0){ toast('⚠️ Enter a valid limit'); return; }
   S.saveLimit(v); toast('✓ Limit updated to '+fmt(v)); renderAll();
 }
 
-// ══ ENTRIES ══
+// ══ ENTRIES / STATEMENT ══
 function renderEntries(filtered){
-  const el=document.getElementById('entriesList');
-  if(filtered.length===0){
-    el.innerHTML='<div class="empty"><div class="ei">📭</div><p>No entries yet.<br>Tap + to add.</p></div>'; return;
+  // Apply filters
+  const typeFilter = document.getElementById('filterType')?.value || 'ALL';
+  const catFilter  = document.getElementById('filterCat')?.value  || 'ALL';
+  const search     = (document.getElementById('searchInput')?.value || '').toLowerCase();
+
+  let entries = [...filtered];
+  if(typeFilter !== 'ALL') entries = entries.filter(e=>e.type===typeFilter);
+  if(catFilter  !== 'ALL') entries = entries.filter(e=>e.cat===catFilter);
+  if(search) entries = entries.filter(e=>e.desc.toLowerCase().includes(search)||e.cat.toLowerCase().includes(search));
+
+  // Summary bar
+  const totalCr = entries.filter(e=>e.type==='credit').reduce((s,e)=>s+e.amount,0);
+  const totalDr = entries.filter(e=>e.type==='debit').reduce((s,e)=>s+e.amount,0);
+  const totalTr = entries.filter(e=>e.type==='transfer').reduce((s,e)=>s+e.amount,0);
+  const net = totalCr - totalDr;
+  const sb = document.getElementById('stmtSummaryBar');
+  if(sb) sb.innerHTML = `
+    <div class="ssb-item"><div class="ssb-label">Credits</div><div class="ssb-val cr">${fmt(totalCr)}</div></div>
+    <div class="ssb-item"><div class="ssb-label">Debits</div><div class="ssb-val dr">${fmt(totalDr)}</div></div>
+    <div class="ssb-item"><div class="ssb-label">Transfers</div><div class="ssb-val tr">${fmt(totalTr)}</div></div>
+    <div class="ssb-item"><div class="ssb-label">Net</div><div class="ssb-val" style="color:${net>=0?'var(--g)':'var(--red)'}">${net>=0?'+':'−'}${fmt(net)}</div></div>`;
+
+  const el = document.getElementById('stmtTable');
+  if(!el) return;
+
+  if(!entries.length){
+    el.innerHTML=`<div class="no-stmt"><div class="ei">📭</div><p style="font-size:13px">No entries found.<br>Try adjusting your filters.</p></div>`;
+    return;
   }
-  const sorted=[...filtered].sort((a,b)=>new Date(b.date)-new Date(a.date));
-  let html='',lastDate='';
-  sorted.forEach(e=>{
-    if(e.date!==lastDate){ html+=`<div class="sec-lbl">${fmtD(e.date)}</div>`; lastDate=e.date; }
-    const b=BANKS[e.bank];
-    const ic=CAT_IC[e.cat]||'📌';
-    const tag=e.type==='credit'?'tag-cr':e.type==='debit'?'tag-dr':'tag-tr';
-    const lbl=e.type==='credit'?'CR':e.type==='debit'?'DR':'TR';
-    const cls=e.type==='credit'?'cr':e.type==='debit'?'dr':'tr';
-    const pfx=e.type==='credit'?'+':e.type==='transfer'?'⇄':'−';
-    const sub=e.type==='transfer'?`${b.short}→${BANKS[e.toBank]?.short}`:b.short;
-    html+=`<div class="tx">
-      <div class="tx-l">
-        <div class="tx-ic" style="background:${b.color}1A">${ic}</div>
-        <div>
-          <div class="tx-nm">${e.desc}<span class="tag ${tag}">${lbl}</span></div>
-          <div class="tx-sub">${sub} · ${e.cat}</div>
+
+  // Sort newest first
+  const sorted = [...entries].sort((a,b)=>new Date(b.date)-new Date(a.date));
+
+  // Compute running balance per bank
+  const allEntries = S.entries().sort((a,b)=>new Date(a.date)-new Date(b.date));
+  const runningBal = {};
+
+  // Group by month for dividers
+  const CAT_COLORS_MAP = {
+    'Client Payment':'#1F5C3F','Loan Received':'#2E7D52','Personal':'#1565C0',
+    'Tools':'#4CAF50','LinkedIn':'#0288D1','Outreach':'#C9A84C',
+    'Lab':'#8BC34A','EMI':'#FF7043','Savings':'#FFB300',
+    'Contingency':'#78909C','Other':'#BDBDBD','Transfer':'#7B1FA2'
+  };
+
+  let html = `<div class="stmt-header">
+    <span>Date</span><span>Details</span><span>Amount</span><span>Balance</span>
+  </div>`;
+
+  let lastMonth = '';
+  sorted.forEach((e,idx)=>{
+    const d = new Date(e.date);
+    const monthKey = `${MONTHS[d.getMonth()]} ${d.getFullYear()}`;
+    const dayStr   = String(d.getDate()).padStart(2,'0');
+    const monStr   = MONTHS[d.getMonth()];
+
+    // Month divider
+    if(monthKey !== lastMonth){
+      // Compute month net for that month
+      const mEntries = sorted.filter(x=>{
+        const xd=new Date(x.date);
+        return xd.getMonth()===d.getMonth()&&xd.getFullYear()===d.getFullYear();
+      });
+      const mCr=mEntries.filter(x=>x.type==='credit').reduce((s,x)=>s+x.amount,0);
+      const mDr=mEntries.filter(x=>x.type==='debit').reduce((s,x)=>s+x.amount,0);
+      const mNet=mCr-mDr;
+      html+=`<div class="month-sep">
+        <span class="ml">📅 ${monthKey}</span>
+        <span class="mn" style="color:${mNet>=0?'var(--g)':'var(--red)'}">${mNet>=0?'+':'−'}${fmt(mNet)}</span>
+      </div>`;
+      lastMonth=monthKey;
+    }
+
+    const b    = BANKS[e.bank];
+    const rowCls = e.type==='credit'?'cr-row':e.type==='debit'?'dr-row':'tr-row';
+    const amtCls = e.type==='credit'?'cr':e.type==='debit'?'dr':'tr';
+    const pfx    = e.type==='credit'?'+ ₹':e.type==='transfer'?'⇄ ₹':'− ₹';
+    const amtFmt = e.amount>=1000?(e.amount/1000).toFixed(1)+'K':Math.round(e.amount);
+    const catColor = CAT_COLORS_MAP[e.cat]||'#BDBDBD';
+    const bankInfo = e.type==='transfer'?`${b.short}→${BANKS[e.toBank]?.short||'?'}`:b.short;
+
+    // Running balance for this bank
+    const bankKey = e.type==='transfer'?e.bank:e.bank;
+    if(!(bankKey in runningBal)) runningBal[bankKey]=bankBal(bankKey, allEntries.filter(x=>new Date(x.date)<=d));
+    const bal = bankBal(e.bank, allEntries.filter(x=>new Date(x.date)<=d));
+    const balFmt = Math.abs(bal)>=1000?(Math.abs(bal)/1000).toFixed(1)+'K':Math.abs(bal);
+
+    html+=`<div class="stmt-row ${rowCls}">
+      <div class="stmt-date">
+        <span class="day">${dayStr}</span>
+        <span class="mon">${monStr}</span>
+      </div>
+      <div class="stmt-desc">
+        <div class="name">${e.desc}</div>
+        <div class="meta">
+          <span class="cat-dot" style="background:${catColor}"></span>
+          <span>${e.cat}</span>
+          <span style="color:#BDBDBD">·</span>
+          <span>${bankInfo}</span>
         </div>
       </div>
-      <div class="tx-r">
-        <div class="tx-amt ${cls}">${pfx}${fmt(e.amount)}</div>
-        <button class="del" onclick="deleteEntry(${e.id})">✕</button>
+      <div class="stmt-amt">
+        <div class="amount ${amtCls}">${pfx}${amtFmt}</div>
+        <button class="sdel" onclick="deleteEntry(${e.id})">✕ Del</button>
+      </div>
+      <div class="stmt-bal">
+        <div class="rbal" style="color:${bal>=0?'var(--g)':'var(--red)'}">${bal>=0?'':'-'}₹${balFmt}</div>
+        <div class="rbal-l">${b.short} bal</div>
       </div>
     </div>`;
   });
-  el.innerHTML=`<div class="card">${html}</div>`;
+
+  el.innerHTML=html;
 }
 
 // ══ FLOW ══
+// ══ INSIGHTS ══
+function renderInsights(all){
+  // ── Balance update form ──
+  const obs = S.openingBals();
+  const buf = document.getElementById('balUpdateForm');
+  if(buf) buf.innerHTML = Object.entries(BANKS).map(([k,b])=>`
+    <div class="ob-row">
+      <div class="ob-label">
+        <div class="ob-icon" style="background:${b.color}18;color:${b.color}">${b.icon}</div>
+        <div><div class="ob-name">${b.short}</div><div class="ob-type">${b.type}</div></div>
+      </div>
+      <input class="ob-input" type="number" id="ob_${k}" placeholder="0"
+        value="${obs[k]!==undefined?obs[k]:''}" inputmode="numeric">
+    </div>`).join('');
+
+  // ── Filter entries by period ──
+  const now = new Date();
+  function inPeriod(e){
+    if(insightPeriod==='all') return true;
+    const d=new Date(e.date);
+    if(insightPeriod==='month') return d.getMonth()===now.getMonth()&&d.getFullYear()===now.getFullYear();
+    if(insightPeriod==='3month'){
+      const cutoff=new Date(now.getFullYear(),now.getMonth()-2,1);
+      return d>=cutoff;
+    }
+    return true;
+  }
+  const periodEntries = all.filter(inPeriod);
+  const expenses = periodEntries.filter(e=>e.type==='debit');
+  const totalSpend = expenses.reduce((s,e)=>s+e.amount,0);
+
+  // ── Spending by category ──
+  const CAT_COLORS_MAP={
+    'Client Payment':'#1F5C3F','Loan Received':'#2E7D52','Personal':'#1565C0',
+    'Tools':'#4CAF50','LinkedIn':'#0288D1','Outreach':'#C9A84C',
+    'Lab':'#8BC34A','EMI':'#FF7043','Savings':'#FFB300',
+    'Contingency':'#78909C','Other':'#BDBDBD','Transfer':'#7B1FA2'
+  };
+
+  const catMap={};
+  expenses.forEach(e=>{ catMap[e.cat]=(catMap[e.cat]||0)+e.amount; });
+  const sortedCats=Object.entries(catMap).sort((a,b)=>b[1]-a[1]);
+
+  const sb=document.getElementById('spendingBreakdown');
+  if(sb){
+    if(!sortedCats.length){
+      sb.innerHTML='<div style="text-align:center;padding:20px;color:var(--sub);font-size:13px">No expenses in this period</div>';
+    } else {
+      sb.innerHTML = sortedCats.map(([cat,amt])=>{
+        const pct=Math.round((amt/totalSpend)*100);
+        const color=CAT_COLORS_MAP[cat]||'#BDBDBD';
+        return `<div class="cat-bar-row">
+          <div class="cat-bar-top">
+            <div class="cat-bar-name">
+              <span style="width:10px;height:10px;border-radius:50%;background:${color};display:inline-block;flex-shrink:0"></span>
+              ${cat}
+            </div>
+            <div>
+              <span class="cat-bar-amt">${fmt(amt)}</span>
+              <span class="cat-bar-pct">${pct}%</span>
+            </div>
+          </div>
+          <div class="cat-bar-track">
+            <div class="cat-bar-fill" style="width:${pct}%;background:${color}"></div>
+          </div>
+        </div>`;
+      }).join('') +
+      `<div style="display:flex;justify-content:space-between;border-top:1.5px solid var(--bdr);padding-top:10px;margin-top:4px">
+        <span style="font-size:12px;font-weight:700;color:var(--sub)">TOTAL SPEND</span>
+        <span style="font-size:14px;font-weight:700;color:var(--red)">${fmt(totalSpend)}</span>
+      </div>`;
+    }
+  }
+
+  // ── Top 5 expenses ──
+  const top5 = [...expenses].sort((a,b)=>b.amount-a.amount).slice(0,5);
+  const te = document.getElementById('topExpenses');
+  if(te){
+    if(!top5.length){
+      te.innerHTML='<div style="text-align:center;padding:20px;color:var(--sub);font-size:13px">No expenses yet</div>';
+    } else {
+      te.innerHTML = top5.map((e,i)=>{
+        const b=BANKS[e.bank];
+        return `<div class="top-row">
+          <div class="top-rank">${i+1}</div>
+          <div class="top-info">
+            <div class="top-name">${e.desc}</div>
+            <div class="top-meta">${b.short} · ${e.cat} · ${fmtD(e.date)}</div>
+          </div>
+          <div class="top-amt">${fmt(e.amount)}</div>
+        </div>`;
+      }).join('');
+    }
+  }
+
+  // ── Bank-wise summary ──
+  const bws = document.getElementById('bankWiseSummary');
+  if(bws){
+    bws.innerHTML = Object.entries(BANKS).map(([k,b])=>{
+      const bal = bankBal(k, all);
+      const income = periodEntries.filter(e=>e.bank===k&&e.type==='credit').reduce((s,e)=>s+e.amount,0);
+      const spend  = periodEntries.filter(e=>e.bank===k&&e.type==='debit').reduce((s,e)=>s+e.amount,0);
+      const tin    = periodEntries.filter(e=>e.toBank===k&&e.type==='transfer').reduce((s,e)=>s+e.amount,0);
+      const tout   = periodEntries.filter(e=>e.bank===k&&e.type==='transfer').reduce((s,e)=>s+e.amount,0);
+      return `<div class="bw-row">
+        <div class="bw-left">
+          <div class="bw-icon" style="background:${b.color}18;color:${b.color}">${b.icon}</div>
+          <div>
+            <div class="bw-name" style="color:${b.color}">${b.name}</div>
+            <div class="bw-type">${b.type}</div>
+          </div>
+        </div>
+        <div class="bw-right">
+          <div class="bw-bal ${bal>=0?'pos':'neg'}">${fmt(bal)}</div>
+          <div class="bw-detail">
+            <span class="cr">↑${fmt(income+tin)}</span>
+            <span style="color:var(--bdr)"> · </span>
+            <span class="dr">↓${fmt(spend+tout)}</span>
+          </div>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  // ── Transfer history ──
+  renderFlow(all);
+}
+
 function renderFlow(all){
   const transfers=all.filter(e=>e.type==='transfer').sort((a,b)=>new Date(b.date)-new Date(a.date));
   const fl=document.getElementById('flowList');
@@ -605,103 +984,219 @@ function renderFlow(all){
       </div>
     </div>`;
   }).join('');
-
-  document.getElementById('bankTotals').innerHTML=Object.entries(BANKS).map(([k,b])=>{
-    const bal=bankBal(k,all);
-    const cin=all.filter(e=>e.bank===k&&e.type==='credit').reduce((s,e)=>s+e.amount,0);
-    const dout=all.filter(e=>e.bank===k&&e.type==='debit').reduce((s,e)=>s+e.amount,0);
-    const tin=all.filter(e=>e.toBank===k&&e.type==='transfer').reduce((s,e)=>s+e.amount,0);
-    const tout=all.filter(e=>e.bank===k&&e.type==='transfer').reduce((s,e)=>s+e.amount,0);
-    return `<div class="sr" style="flex-direction:column;align-items:flex-start;gap:3px">
-      <div style="display:flex;justify-content:space-between;width:100%;align-items:center">
-        <span style="font-size:13px;font-weight:700;color:${b.color}">${b.icon} ${b.name}</span>
-        <span style="font-size:14px;font-weight:700;color:${bal>=0?'var(--g)':'var(--red)'}">${fmt(bal)}</span>
-      </div>
-      <div style="display:flex;gap:12px;font-size:10px;color:var(--sub)">
-        <span class="cr">↑ IN ${fmt(cin+tin)}</span>
-        <span class="dr">↓ OUT ${fmt(dout+tout)}</span>
-      </div>
-    </div>`;
-  }).join('');
 }
 
 // ══ CHARTS ══
-function renderCharts(all){
-  const cDaily=document.getElementById('dailyChart');
-  const cBank=document.getElementById('bankChart');
-  const cMonth=document.getElementById('monthlyChart');
-  [cDaily,cBank,cMonth].forEach(c=>{c.width=c.offsetWidth||340;c.height=155;});
+function drawEmpty(ctx, W, H, msg){
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle='#F2F4F3';
+  ctx.beginPath(); ctx.roundRect(12,12,W-24,H-24,10); ctx.fill();
+  ctx.fillStyle='#BDBDBD';
+  ctx.font='bold 28px -apple-system,sans-serif';
+  ctx.textAlign='center';
+  ctx.fillText('📊', W/2, H/2-10);
+  ctx.font='12px -apple-system,sans-serif';
+  ctx.fillText(msg, W/2, H/2+16);
+}
 
-  // Daily
+function drawGridLines(ctx, W, H, maxV, padL, padB, steps=4){
+  ctx.strokeStyle='#EEEEEE'; ctx.lineWidth=1;
+  ctx.fillStyle='#BDBDBD'; ctx.font='10px -apple-system,sans-serif'; ctx.textAlign='right';
+  for(let i=0;i<=steps;i++){
+    const y = H - padB - (i/steps)*(H-padB-20);
+    const val = (maxV * i/steps);
+    ctx.beginPath(); ctx.moveTo(padL,y); ctx.lineTo(W-8,y); ctx.stroke();
+    if(i>0){
+      const label = val>=1000 ? (val/1000).toFixed(1)+'K' : val.toFixed(0);
+      ctx.fillText('₹'+label, padL-4, y+3);
+    }
+  }
+}
+
+function renderCharts(all){
+  const dpr = window.devicePixelRatio || 1;
+
+  function setupCanvas(id, h){
+    const c = document.getElementById(id);
+    const W = c.parentElement.offsetWidth - 28 || 320;
+    c.style.width = W+'px'; c.style.height = h+'px';
+    c.width = W*dpr; c.height = h*dpr;
+    const ctx = c.getContext('2d');
+    ctx.scale(dpr,dpr);
+    return {ctx, W, H:h};
+  }
+
+  // ── Chart 1: Daily Credits vs Debits (14 days) ──
   (function(){
-    const ctx=cDaily.getContext('2d'), W=cDaily.width, H=155;
-    ctx.clearRect(0,0,W,H);
+    const {ctx,W,H} = setupCanvas('dailyChart', 220);
     const days=14, today=new Date();
     const labels=[],creds=[],debs=[];
     for(let i=days-1;i>=0;i--){
       const d=new Date(today); d.setDate(today.getDate()-i);
       const k=d.toISOString().split('T')[0];
-      labels.push(['S','M','T','W','T','F','S'][d.getDay()]);
+      const dayLabel = d.getDate()+'/'+(d.getMonth()+1);
+      labels.push(dayLabel);
       creds.push(all.filter(e=>e.type==='credit'&&e.date===k).reduce((s,e)=>s+e.amount,0));
       debs.push(all.filter(e=>e.type==='debit'&&e.date===k).reduce((s,e)=>s+e.amount,0));
     }
-    const maxV=Math.max(...creds,...debs,1);
-    const pad=16, slot=(W-pad*2)/days, bw=slot*.28;
-    ctx.font='9px -apple-system,sans-serif'; ctx.textAlign='center';
-    labels.forEach((l,i)=>{
-      const x=pad+i*slot+slot/2;
-      if(creds[i]>0){ const bh=((creds[i]/maxV)*(H-28))||2; ctx.fillStyle='#1F5C3F'; ctx.beginPath(); ctx.roundRect(x-bw-1,H-18-bh,bw,bh,2); ctx.fill(); }
-      if(debs[i]>0){  const bh=((debs[i]/maxV)*(H-28))||2;  ctx.fillStyle='#C0392B'; ctx.beginPath(); ctx.roundRect(x+1,H-18-bh,bw,bh,2); ctx.fill(); }
-      ctx.fillStyle='#999'; ctx.fillText(l,x,H-4);
-    });
-    ctx.fillStyle='#1F5C3F'; ctx.fillRect(pad,6,8,8); ctx.fillStyle='#555'; ctx.font='9px sans-serif'; ctx.textAlign='left'; ctx.fillText('Credit',pad+11,13);
-    ctx.fillStyle='#C0392B'; ctx.fillRect(pad+52,6,8,8); ctx.fillText('Debit',pad+63,13);
-  })();
+    const hasData = creds.some(v=>v>0) || debs.some(v=>v>0);
+    if(!hasData){ drawEmpty(ctx,W,H,'Add entries to see daily activity'); return; }
 
-  // Bank balances
-  (function(){
-    const ctx=cBank.getContext('2d'), W=cBank.width, H=155;
+    const maxV = Math.max(...creds,...debs,1);
+    const padL=44, padB=36, padT=30;
+    const chartH = H-padB-padT;
     ctx.clearRect(0,0,W,H);
-    const banks=Object.entries(BANKS), bals=banks.map(([k])=>bankBal(k,all));
-    const maxV=Math.max(...bals.map(Math.abs),1);
-    const pad=16, slot=(W-pad*2)/banks.length, bw=slot*.5;
-    ctx.font='9px -apple-system,sans-serif'; ctx.textAlign='center';
-    banks.forEach(([k,b],i)=>{
-      const x=pad+i*slot+slot/2, val=bals[i];
-      const bh=Math.max((Math.abs(val)/maxV)*(H-38),2);
-      ctx.fillStyle=b.color; ctx.beginPath(); ctx.roundRect(x-bw/2,H-22-bh,bw,bh,3); ctx.fill();
-      ctx.fillStyle='#555'; ctx.fillText(b.short,x,H-6);
-      ctx.fillStyle=val>=0?'var(--g)':'var(--red)'; ctx.font='8px sans-serif';
-      ctx.fillText(fmt(val).replace('₹',''),x,H-24-bh); ctx.font='9px sans-serif';
+    drawGridLines(ctx,W,H,maxV,padL,padB);
+
+    // Legend
+    ctx.fillStyle='#1F5C3F'; ctx.fillRect(padL,8,12,12); ctx.fillRect(padL+12,8,0,0);
+    ctx.fillStyle='#444'; ctx.font='11px -apple-system,sans-serif'; ctx.textAlign='left';
+    ctx.fillText('Credit',padL+16,19);
+    ctx.fillStyle='#C0392B'; ctx.fillRect(padL+68,8,12,12);
+    ctx.fillStyle='#444'; ctx.fillText('Debit',padL+84,19);
+
+    const slot=(W-padL-8)/days, bw=Math.max(slot*0.3,4);
+    ctx.textAlign='center';
+    labels.forEach((l,i)=>{
+      const x=padL+i*slot+slot/2;
+      // Credit bar
+      if(creds[i]>0){
+        const bh=(creds[i]/maxV)*chartH;
+        const gradient=ctx.createLinearGradient(0,H-padB-bh,0,H-padB);
+        gradient.addColorStop(0,'#2E7D52'); gradient.addColorStop(1,'#1F5C3F');
+        ctx.fillStyle=gradient;
+        ctx.beginPath(); ctx.roundRect(x-bw-1,H-padB-bh,bw,bh,3); ctx.fill();
+        ctx.fillStyle='#1F5C3F'; ctx.font='bold 9px -apple-system,sans-serif';
+        const lbl = creds[i]>=1000?(creds[i]/1000).toFixed(1)+'K':creds[i];
+        ctx.fillText(lbl,x-bw/2-1,H-padB-bh-4);
+      }
+      // Debit bar
+      if(debs[i]>0){
+        const bh=(debs[i]/maxV)*chartH;
+        const gradient=ctx.createLinearGradient(0,H-padB-bh,0,H-padB);
+        gradient.addColorStop(0,'#E74C3C'); gradient.addColorStop(1,'#C0392B');
+        ctx.fillStyle=gradient;
+        ctx.beginPath(); ctx.roundRect(x+1,H-padB-bh,bw,bh,3); ctx.fill();
+        ctx.fillStyle='#C0392B'; ctx.font='bold 9px -apple-system,sans-serif';
+        const lbl = debs[i]>=1000?(debs[i]/1000).toFixed(1)+'K':debs[i];
+        ctx.fillText(lbl,x+bw/2+1,H-padB-bh-4);
+      }
+      // X label — show every 2nd
+      if(i%2===0){
+        ctx.fillStyle='#999'; ctx.font='9px -apple-system,sans-serif';
+        ctx.fillText(l,x,H-padB+14);
+      }
     });
+    // X axis line
+    ctx.strokeStyle='#E0E0E0'; ctx.lineWidth=1.5;
+    ctx.beginPath(); ctx.moveTo(padL,H-padB); ctx.lineTo(W-8,H-padB); ctx.stroke();
   })();
 
-  // Monthly net
+  // ── Chart 2: Balance by Bank ──
   (function(){
-    const ctx=cMonth.getContext('2d'), W=cMonth.width, H=155;
+    const {ctx,W,H} = setupCanvas('bankChart', 220);
+    ctx.clearRect(0,0,W,H);
+    const banks=Object.entries(BANKS);
+    const bals=banks.map(([k])=>bankBal(k,all));
+    const hasData = bals.some(v=>v!==0);
+    if(!hasData){ drawEmpty(ctx,W,H,'No balance data yet'); return; }
+
+    const maxV=Math.max(...bals.map(Math.abs),1);
+    const padL=44, padB=36, padT=16, chartH=H-padB-padT;
+    drawGridLines(ctx,W,H,maxV,padL,padB);
+
+    const slot=(W-padL-8)/banks.length, bw=Math.min(slot*0.55,36);
+    ctx.textAlign='center';
+    banks.forEach(([k,b],i)=>{
+      const x=padL+i*slot+slot/2, val=bals[i];
+      if(val===0){
+        ctx.fillStyle='#E0E0E0';
+        ctx.beginPath(); ctx.roundRect(x-bw/2,H-padB-4,bw,4,2); ctx.fill();
+      } else {
+        const bh=Math.max((Math.abs(val)/maxV)*chartH,4);
+        const isPos=val>=0;
+        const gradient=ctx.createLinearGradient(0,H-padB-bh,0,H-padB);
+        gradient.addColorStop(0,b.color+'EE'); gradient.addColorStop(1,b.color+'88');
+        ctx.fillStyle=gradient;
+        ctx.beginPath(); ctx.roundRect(x-bw/2,H-padB-bh,bw,bh,4); ctx.fill();
+        // Value label
+        ctx.fillStyle=isPos?b.color:'#C0392B';
+        ctx.font='bold 9px -apple-system,sans-serif';
+        const lbl=(isPos?'':'-')+'₹'+(Math.abs(val)>=1000?(Math.abs(val)/1000).toFixed(1)+'K':Math.abs(val));
+        ctx.fillText(lbl,x,H-padB-bh-5);
+      }
+      // Bank label
+      ctx.fillStyle=b.color; ctx.font='bold 10px -apple-system,sans-serif';
+      ctx.fillText(b.short,x,H-padB+14);
+      ctx.fillStyle='#BDBDBD'; ctx.font='8px -apple-system,sans-serif';
+      ctx.fillText(b.icon,x,H-padB+26);
+    });
+    ctx.strokeStyle='#E0E0E0'; ctx.lineWidth=1.5;
+    ctx.beginPath(); ctx.moveTo(padL,H-padB); ctx.lineTo(W-8,H-padB); ctx.stroke();
+  })();
+
+  // ── Chart 3: Monthly Net (6 months) ──
+  (function(){
+    const {ctx,W,H} = setupCanvas('monthlyChart', 220);
     ctx.clearRect(0,0,W,H);
     const now=new Date(), n=6;
-    const labels=[],nets=[];
+    const labels=[],creds=[],debs=[],nets=[];
     for(let i=n-1;i>=0;i--){
       const d=new Date(now.getFullYear(),now.getMonth()-i,1);
       const m=d.getMonth(),y=d.getFullYear();
       const me=all.filter(e=>{ const ed=new Date(e.date); return ed.getMonth()===m&&ed.getFullYear()===y; });
       const cr=me.filter(e=>e.type==='credit').reduce((s,e)=>s+e.amount,0);
       const dr=me.filter(e=>e.type==='debit').reduce((s,e)=>s+e.amount,0);
-      labels.push(MONTHS[m]); nets.push(cr-dr);
+      labels.push(MONTHS[m]); creds.push(cr); debs.push(dr); nets.push(cr-dr);
     }
-    const maxV=Math.max(...nets.map(Math.abs),1);
-    const pad=20, slot=(W-pad*2)/n, bw=slot*.45, midY=(H-20)/2+10;
-    ctx.strokeStyle='#E0E0E0'; ctx.lineWidth=1;
-    ctx.beginPath(); ctx.moveTo(pad,midY); ctx.lineTo(W-pad,midY); ctx.stroke();
-    ctx.font='9px -apple-system,sans-serif'; ctx.textAlign='center';
-    nets.forEach((v,i)=>{
-      const x=pad+i*slot+slot/2, bh=Math.max((Math.abs(v)/maxV)*(midY-14),2);
-      ctx.fillStyle=v>=0?'#1F5C3F':'#C0392B';
-      if(v>=0){ ctx.beginPath(); ctx.roundRect(x-bw/2,midY-bh,bw,bh,3); ctx.fill(); }
-      else     { ctx.beginPath(); ctx.roundRect(x-bw/2,midY,bw,bh,3); ctx.fill(); }
-      ctx.fillStyle='#999'; ctx.fillText(labels[i],x,H-4);
+    const hasData=creds.some(v=>v>0)||debs.some(v=>v>0);
+    if(!hasData){ drawEmpty(ctx,W,H,'No monthly data yet'); return; }
+
+    const maxV=Math.max(...creds,...debs,1);
+    const padL=44, padB=36, padT=30, chartH=H-padB-padT;
+    drawGridLines(ctx,W,H,maxV,padL,padB);
+
+    // Legend
+    ctx.fillStyle='#1F5C3F'; ctx.fillRect(padL,8,12,12);
+    ctx.fillStyle='#444'; ctx.font='11px sans-serif'; ctx.textAlign='left'; ctx.fillText('Income',padL+16,19);
+    ctx.fillStyle='#C0392B'; ctx.fillRect(padL+72,8,12,12);
+    ctx.fillStyle='#444'; ctx.fillText('Expense',padL+88,19);
+
+    const slot=(W-padL-8)/n, bw=Math.min(slot*0.32,20);
+    ctx.textAlign='center';
+    labels.forEach((l,i)=>{
+      const x=padL+i*slot+slot/2;
+      // Income bar
+      if(creds[i]>0){
+        const bh=(creds[i]/maxV)*chartH;
+        const grad=ctx.createLinearGradient(0,H-padB-bh,0,H-padB);
+        grad.addColorStop(0,'#2E7D52'); grad.addColorStop(1,'#1F5C3F');
+        ctx.fillStyle=grad;
+        ctx.beginPath(); ctx.roundRect(x-bw-1,H-padB-bh,bw,bh,3); ctx.fill();
+      }
+      // Expense bar
+      if(debs[i]>0){
+        const bh=(debs[i]/maxV)*chartH;
+        const grad=ctx.createLinearGradient(0,H-padB-bh,0,H-padB);
+        grad.addColorStop(0,'#E74C3C'); grad.addColorStop(1,'#C0392B');
+        ctx.fillStyle=grad;
+        ctx.beginPath(); ctx.roundRect(x+1,H-padB-bh,bw,bh,3); ctx.fill();
+      }
+      // Net label
+      const net=nets[i];
+      if(net!==0){
+        ctx.fillStyle=net>0?'#1F5C3F':'#C0392B';
+        ctx.font='bold 9px -apple-system,sans-serif';
+        const lbl=(net>0?'+':'-')+'₹'+(Math.abs(net)>=1000?(Math.abs(net)/1000).toFixed(1)+'K':Math.abs(net));
+        const maxBh=Math.max(creds[i],debs[i]);
+        ctx.fillText(lbl,x,(maxBh/maxV)*chartH<chartH-16?H-padB-(maxBh/maxV)*chartH-16:H-padB-(maxBh/maxV)*chartH-4);
+      }
+      // Month label
+      ctx.fillStyle='#666'; ctx.font='bold 10px -apple-system,sans-serif';
+      ctx.fillText(l,x,H-padB+14);
     });
+    ctx.strokeStyle='#E0E0E0'; ctx.lineWidth=1.5;
+    ctx.beginPath(); ctx.moveTo(padL,H-padB); ctx.lineTo(W-8,H-padB); ctx.stroke();
   })();
 }
 
